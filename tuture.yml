@@ -1,4 +1,4 @@
-name: My Awesome Tutorial
+name: Django 快速入门教程
 id: d6a5e39a69c26e9f216c94d105a1e0b3
 topics:
   - Django
@@ -10,23 +10,23 @@ description: >-
   Django 是 Python 社区的两大最受欢迎的 Web 框架之一（另一个是 Flask）。凭借功能强大的脚手架和诸多开箱即用的组件，用 Django
   搭建 Web 应用快速而又省力。然而，也正是因为过于强大，想要驾驭它需要花费不少的力气。本文将通过实现一个新闻发布网站带你快速熟悉 Django
   框架，让你能够骑上这匹快马，在 Web 开发的战场上尽情驰骋。
-created: 2019-11-19T11:56:12.807Z
-updated: 2019-11-19T11:56:12.807Z
+created: '2019-11-19T11:56:12.807Z'
+updated: 2019-11-19T12:47:46.372Z
 steps:
   - name: 起步
     commit: eae81c8
     diff:
       - file: .gitignore
       - file: django_news/__init__.py
-        display: true
+        display: false
       - file: django_news/settings.py
-        display: true
+        display: false
       - file: django_news/urls.py
-        display: true
+        display: false
       - file: django_news/wsgi.py
-        display: true
+        display: false
       - file: manage.py
-        display: true
+        display: false
     explain:
       pre: >-
         Django 由 Adrian Holovaty 和 Simon Willison 在 2003 年的秋天写成，并在 2005
@@ -132,7 +132,7 @@ steps:
         按照提示，我们通过浏览器访问 [localhost:8000](localhost:8000)，可以看到欢迎界面：
 
 
-        ![](tuture-assets/image.png)
+        ![](tuture-assets/welcome.png)
 
 
         > 细心的你会发现出现了一行鲜红色的提示：You have 17 unapplied migration(s)...（省略 n
@@ -140,3 +140,109 @@ steps:
 
 
         一切准备就绪，缰绳已在你手中！
+  - name: 创建第一个自定义 Django App
+    commit: d44af3d
+    diff:
+      - file: django_news/settings.py
+        display: true
+        explain:
+          pre: 最后，我们在 settings.py 中将 news 应用加入 `INSTALLED_APPS` 中：
+      - file: news/__init__.py
+        display: false
+      - file: news/admin.py
+        display: false
+      - file: news/apps.py
+        display: false
+      - file: news/migrations/__init__.py
+        display: false
+      - file: news/models.py
+        display: false
+      - file: news/tests.py
+        display: false
+      - file: news/views.py
+        display: false
+      - file: tuture.yml
+    explain:
+      pre: >-
+        在上一节中我们讲到，Django 是一个高度**模块化**的框架。具体而言，一个 Django 应用由多个子应用组成，我们一般称之为
+        App（注意不是我们常说的移动应用 APP，而是 Application 的简写），如下图所示。
+
+
+        Django App 一般分为三大类（根据来源）：
+
+
+        - **内置**：即  Django 框架自带的应用，包括 admin（后台管理）、auth（身份鉴权）、sessions（会话管理）等等
+
+        - **自定义**：即用来实现我们自身业务逻辑的应用，这里我们将创建一个新闻展示应用
+
+        - **第三方**：即社区提供的应用，数量极其丰富，功能涵盖几乎所有方面，能够大大减少开发成本
+
+
+        所有的 Django 应用都在 django_news/settings.py 的 `INSTALLED_APPS` 列表中定义：
+
+
+        ```python
+
+        INSTALLED_APPS = [
+            'django.contrib.admin',
+            'django.contrib.auth',
+            'django.contrib.contenttypes',
+            'django.contrib.sessions',
+            'django.contrib.messages',
+            'django.contrib.staticfiles',
+        ]
+
+        ```
+
+
+        话不多说，让我们来创建第一个自定义 App，名称为 news：
+
+
+        ```bash
+
+        python manage.py startapp news
+
+        ```
+
+
+        生成的 news 应用文件夹结构如下所示：
+
+
+        ```
+
+        news                     // news 应用目录
+
+        ├── __init__.py
+
+        ├── admin.py             // 后台管理配置
+
+        ├── apps.py
+
+        ├── migrations           // 数据库迁移文件目录
+
+        │   └── __init__.py
+
+        ├── models.py            // 数据模型
+
+        ├── tests.py             // 单元测试
+
+        ├── urls.py              // 应用路由
+
+        └── views.py             // 视图
+
+        ```
+
+
+        这个子目录里面乍一看好多文件啊！这是因为 Django
+        始终坚持**解耦**的原则——尽量减少代码之间的耦合，把不相关的代码拆成多个模块，让同一个模块具有**内聚性**。相信我，等到后面慢慢熟悉之后，你会对每一个模块都了然于胸的。
+
+
+        实际上，每个 Django App 的组织结构符合 Django 的 MTV 法则——Model（模型）+ Template（模板）+
+        View（视图）。MTV 与大家比较熟悉的 MVC 在思想上非常相似，但是命名有比较大的出入，如下表所示：
+
+
+        ![](tuture-assets/image.png)
+
+
+        大家熟知的 View，在 Django 里面代表的是业务逻辑，也就是 MVC 中的控制器哦！
+      post: 至此，我们已经创建了第一个 Django 应用！但是现在这个应用还没有任何内容，我们接下来将逐步完善这个应用。
