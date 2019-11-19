@@ -1,0 +1,142 @@
+name: My Awesome Tutorial
+id: d6a5e39a69c26e9f216c94d105a1e0b3
+topics:
+  - Django
+categories:
+  - 后端
+  - Python
+  - 入门
+description: >-
+  Django 是 Python 社区的两大最受欢迎的 Web 框架之一（另一个是 Flask）。凭借功能强大的脚手架和诸多开箱即用的组件，用 Django
+  搭建 Web 应用快速而又省力。然而，也正是因为过于强大，想要驾驭它需要花费不少的力气。本文将通过实现一个新闻发布网站带你快速熟悉 Django
+  框架，让你能够骑上这匹快马，在 Web 开发的战场上尽情驰骋。
+created: 2019-11-19T11:56:12.807Z
+updated: 2019-11-19T11:56:12.807Z
+steps:
+  - name: 起步
+    commit: eae81c8
+    diff:
+      - file: .gitignore
+      - file: django_news/__init__.py
+        display: true
+      - file: django_news/settings.py
+        display: true
+      - file: django_news/urls.py
+        display: true
+      - file: django_news/wsgi.py
+        display: true
+      - file: manage.py
+        display: true
+    explain:
+      pre: >-
+        Django 由 Adrian Holovaty 和 Simon Willison 在 2003 年的秋天写成，并在 2005
+        年正式发布。他们俩当时为一个新闻报社制作网站，对**快速开发**有着比较高的需求，并且希望能够在开发的同时也能够**让非技术人员为网站添加内容**。于是这也使得
+        Django 具备了两项鲜明的特点：
+
+
+        - 高度强调**可复用性**和**可插拔性**，内置大量现成的成熟组件，开发效率极高
+
+        - 自带与数据库联动的**后台管理系统**，能够在开发的同时创建内容
+
+
+        > Django 的名字取自吉他手 Django Reinhardt，发音为 JANG-goh（谐音“尖狗”）。
+
+
+        在这篇教程中，我们也将向 Django 的起源致敬——手把手带你开发一个新闻发布网站，同时包括网页以及可供客户端（例如手机
+        APP、微信公众号、小程序等等）获取数据的 REST API。
+
+
+        ### 预备知识
+
+
+        本教程假定你已经知道了：
+
+
+        - 基本的 Python 3 语言知识，包括使用 pip 安装包
+
+        - 了解 HTTP 协议基础知识，浏览器和服务器之间是如何互动的
+
+
+        ### 学习目标
+
+
+        读完这篇教程后，你将会学到：
+
+
+        - 掌握了 Django MTV 框架的精髓
+
+        - 学会了如何用 DRF（Django Rest Framework）轻松搭建 REST API
+
+
+        ### 安装 Django 并启用脚手架
+
+
+        本文假定你已经安装好了 Python 3 和 pip，那么可以直接用 pip 安装 Django：
+
+
+        ```bash
+
+        pip install django
+
+        ```
+
+
+        > 直接用 pip 在全局安装 Django
+        的确不是一个很好的做法，用虚拟环境更符合最佳实践。为了减少初学者们的认知负担，在这里就简化了安装过程。熟悉
+        [pipenv](https://pipenv.kennethreitz.org) 等虚拟环境工具的老司机当然可以自行使用哈。
+
+
+        安装好 Django 后，我们用 Django 自带的脚手架工具 django-admin 创建项目：
+
+
+        ```bash
+
+        django-admin startproject django_news
+
+        cd django_news
+
+        ```
+
+
+        生成的项目骨架及每个文件的作用如下所示：
+
+
+        ```
+
+        django_news
+
+        ├── django_news              // 项目全局文件目录
+
+        │   ├── __init__.py
+
+        │   ├── settings.py          // 全局配置
+
+        │   ├── urls.py              // 全局路由
+
+        │   └── wsgi.py              // WSGI服务接口（暂时不用纠结这个是神马）
+
+        └── manage.py                // 项目管理脚本
+
+        ```
+      post: >-
+        我们使用 manage.py 来运行服务器：
+
+
+        ```bash
+
+        python manage.py runserver
+
+        ```
+
+
+        按照提示，我们通过浏览器访问 [localhost:8000](localhost:8000)，可以看到欢迎界面：
+
+
+        ![](tuture-assets/image.png)
+
+
+        > 细心的你会发现出现了一行鲜红色的提示：You have 17 unapplied migration(s)...（省略 n
+        个字符）。不用担心，我们会在接下来的步骤中详细讲解来龙去脉。
+
+
+        一切准备就绪，缰绳已在你手中！
