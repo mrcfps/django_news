@@ -10,6 +10,7 @@ description: >-
   Django 是 Python 社区的两大最受欢迎的 Web 框架之一（另一个是 Flask）。凭借功能强大的脚手架和诸多开箱即用的组件，用 Django
   搭建 Web 应用快速而又省力。然而，也正是因为过于强大，想要驾驭它需要花费不少的力气。本文将通过实现一个新闻发布网站带你快速熟悉 Django
   框架，让你能够骑上这匹快马，在 Web 开发的战场上尽情驰骋。
+github: https://github.com/mRcfps/django_news
 created: '2019-11-19T11:56:12.807Z'
 updated: 2019-11-21T03:17:55.364Z
 steps:
