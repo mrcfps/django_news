@@ -10,9 +10,9 @@ description: >-
   Django 是 Python 社区的两大最受欢迎的 Web 框架之一（另一个是 Flask）。凭借功能强大的脚手架和诸多开箱即用的组件，用 Django
   搭建 Web 应用快速而又省力。然而，也正是因为过于强大，想要驾驭它需要花费不少的力气。本文将通过实现一个新闻发布网站带你快速熟悉 Django
   框架，让你能够骑上这匹快马，在 Web 开发的战场上尽情驰骋。
-github: https://github.com/mRcfps/django_news
+github: 'https://github.com/mRcfps/django_news'
 created: '2019-11-19T11:56:12.807Z'
-updated: 2019-11-21T03:17:55.364Z
+updated: 2019-11-21T07:42:56.001Z
 steps:
   - name: 起步
     commit: eae81c8
@@ -40,11 +40,14 @@ steps:
         - 自带与数据库联动的**后台管理系统**，能够在开发的同时创建内容
 
 
-        > Django 的名字取自吉他手 Django Reinhardt，发音为 JANG-goh（谐音“尖狗”）。
+        > Django 的名字取自吉他手 Django Reinhardt，发音为 JANG-goh（谐音“尖狗”），但实际上 Django
+        的吉祥物是一只长着翅膀的小马。
 
 
-        在这篇教程中，我们也将向 Django 的起源致敬——手把手带你开发一个新闻发布网站，同时包括网页以及可供客户端（例如手机
-        APP、微信公众号、小程序等等）获取数据的 REST API。
+        ![](tuture-assets/django-logo.png)
+
+
+        在这篇教程中，我们也将向 Django 的起源致敬——手把手带你开发一个新闻发布网站，并且可以从后台管理系统中添加新闻，展示到网站首页上。
 
 
         ### 预备知识
@@ -145,7 +148,7 @@ steps:
         ![](tuture-assets/welcome.png)
 
 
-        > Django 开发服务器可以保持开启，并且后面修改代码会自动重新加载，非常方便。
+        > Django 开发服务器可以保持开启，并且后面修改代码会自动重新加载，非常方便。后面运行其他命令时，再打开一个终端（命令行）即可。
 
 
         一切准备就绪，缰绳已在你手中！
@@ -234,8 +237,6 @@ steps:
         ├── models.py            // 数据模型
 
         ├── tests.py             // 单元测试
-
-        ├── urls.py              // 应用路由
 
         └── views.py             // 视图
 
@@ -603,7 +604,7 @@ steps:
         ![](tuture-assets/with-model.png)
 
 
-        大功告成！在这边教程中，我们完成了一个新闻发布网站，并且可以从后台管理系统中添加新闻，最终展示到我们的网站首页上。
+        大功告成！在这篇教程中，我们完成了一个新闻发布网站，并且可以从后台管理系统中添加新闻，最终展示到我们的网站首页上。
 
 
         希望这篇教程能够让你对 Django 最重要的一些概念和操作有了基本的了解。Django
