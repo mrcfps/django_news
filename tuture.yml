@@ -11,7 +11,7 @@ description: >-
   搭建 Web 应用快速而又省力。然而，也正是因为过于强大，想要驾驭它需要花费不少的力气。本文将通过实现一个新闻发布网站带你快速熟悉 Django
   框架，让你能够骑上这匹快马，在 Web 开发的战场上尽情驰骋。
 created: '2019-11-19T11:56:12.807Z'
-updated: 2019-11-19T12:47:46.372Z
+updated: 2019-11-21T03:17:55.364Z
 steps:
   - name: 起步
     commit: eae81c8
@@ -60,12 +60,17 @@ steps:
         ### 学习目标
 
 
-        读完这篇教程后，你将会学到：
+        读完这篇教程后，你将掌握 Django MTV 框架的精髓：
 
 
-        - 掌握了 Django MTV 框架的精髓
+        - M（Model）：创建数据模型，并执行数据库迁移
 
-        - 学会了如何用 DRF（Django Rest Framework）轻松搭建 REST API
+        - T（Template）：写出基本的 Django 模板，并从视图中传入数据
+
+        - V（View）：在视图中访问数据库，实现业务逻辑，渲染模板，并接入路由表
+
+
+        虽然 Django 还有很多知识点，但是理解了 MTV，后面的知识点学习起来也就轻松多啦。
 
 
         ### 安装 Django 并启用脚手架
@@ -119,7 +124,7 @@ steps:
 
         ```
       post: >-
-        我们使用 manage.py 来运行服务器：
+        我们使用 manage.py 来运行开发服务器（Development Server）：
 
 
         ```bash
@@ -129,14 +134,17 @@ steps:
         ```
 
 
+        > 细心的你会发现出现了一行鲜红色的提示：You have 17 unapplied migration(s)...（省略 n
+        个字符）。不用担心，我们会在接下来的步骤中详细讲解来龙去脉。
+
+
         按照提示，我们通过浏览器访问 [localhost:8000](localhost:8000)，可以看到欢迎界面：
 
 
         ![](tuture-assets/welcome.png)
 
 
-        > 细心的你会发现出现了一行鲜红色的提示：You have 17 unapplied migration(s)...（省略 n
-        个字符）。不用担心，我们会在接下来的步骤中详细讲解来龙去脉。
+        > Django 开发服务器可以保持开启，并且后面修改代码会自动重新加载，非常方便。
 
 
         一切准备就绪，缰绳已在你手中！
@@ -246,3 +254,438 @@ steps:
 
         大家熟知的 View，在 Django 里面代表的是业务逻辑，也就是 MVC 中的控制器哦！
       post: 至此，我们已经创建了第一个 Django 应用！但是现在这个应用还没有任何内容，我们接下来将逐步完善这个应用。
+  - name: 理解视图：业务逻辑的编写
+    commit: 108ba94
+    diff:
+      - file: news/views.py
+        display: true
+        explain:
+          pre: >-
+            对视图访问的流程大致了解之后，我们就可以开始动手了。首先打开 news/views.py，写一个简单的视图函数，返回一串 Hello
+            World!：
+          post: >-
+            上面这个 `index` 函数可以说是一个最简单的视图函数了，实际大部分应用的视图要比这复杂得多。Django
+            同时支持**基于函数的视图**（FBV，Function-based View）和**基于类的视图**（CBV，Class-based
+            View），这里显然是 FBV，接收一个 `request` 请求对象作为参数，返回了一个 `HttpResponse` 对象。
+      - file: news/urls.py
+        display: true
+        explain:
+          pre: 接着，我们要让路由系统能够访问到刚才写好的视图函数。因此先实现子应用 news 的路由表，创建 news/urls.py 文件如下：
+          post: >-
+            每一个 Django 路由表模块（urls.py）中都约定必须包含一个 `urlpatterns`
+            列表用来存放路由映射表。列表中每个元素是一个用 `django.urls.path` 函数封装好的路由映射，通常接收以下三个参数：
+
+
+            - `route`：必须，即实际的访问路由，空字符串等于 `/`，即空路由
+
+            - `view`：必须，该路由将要访问的视图
+
+            - `name`：可选，该路由的名称，方便后续在模板中使用
+      - file: django_news/urls.py
+        display: true
+        explain:
+          pre: >-
+            我们将刚刚写好的 news 路由表接入全局路由表。由于我们希望新闻能够展示在首页（即通过 `/` 就能访问，无需 `/news`），因此
+            news 应用路由在全局路由中的 URL 是一个空字符串。在 django_news/urls.py 中修改如下：
+          post: >-
+            这里使用 `django.urls.include` 函数将 news 应用的路由表接入进来，并且 `include`
+            函数的参数是路由模块路径的字符串 `news.urls`，省去了手动 `import` 的麻烦。
+
+
+            > 添加路由规则时顺序是很重要的，因为在尝试匹配时会按照从上到下的顺序进行，因此应该把最模糊的路由（即空路由）放在最下面。
+      - file: .editorconfig
+        display: false
+      - file: tuture.yml
+    explain:
+      pre: >-
+        也许你已经注意到，通过访问 [localhost:8000/admin](localhost:8000/admin)
+        已经可以访问后台管理系统了（虽然会跳转到登录界面）。接下来，我们也希望能够访问到刚才创建的 news 应用。因此，这一步中我们将：
+
+
+        - 在视图（View）中写一点业务逻辑
+
+        - 接入路由，使其能够被访问
+
+
+        Django 的路由系统是由**全局路由**和**子应用路由**组成。简单来说，根据用户输入的
+        URL，全局路由表进行匹配并选择正确的子应用路由，再由所选择的子应用路由匹配并选择正确的视图（View）。整个流程如下图所示：
+
+
+        ![](tuture-assets/router.png)
+
+
+        例如，用户访问 example.com/apple/buy，然后全局路由根据 /apple/buy 先选择 apple 的路由表，再从
+        apple 路由表中根据 /buy 选择 /buy 路由，然后执行 /buy 对应的 BuyView 视图，返回给用户结果。
+      post: >-
+        如果你开发服务器还在运行（如果没有可以再打开），访问
+        [localhost:8000](localhost:8000)，就可以看到那一串熟悉的字符了：
+
+
+        ![](tuture-assets/image-5d7b188345eefd43.png)
+  - name: 理解模板：网页前端的实现
+    commit: e657040
+    diff:
+      - file: news/templates/news/index.html
+        display: true
+        explain:
+          pre: >-
+            到了动手时间了，我们先实现第一个 Django 模板。在 news 目录中创建一个 templates 目录，再在 templates
+            目录中创建一个 news 目录，并在内层的 news 目录中创建 index.html 文件：
+
+
+            ```bash
+
+            mkdir -p news/templates/news
+
+            touch news/templates/news/index.html
+
+            ```
+
+
+            > 听上去很麻烦，只创建 `news/templates`，然后把模板放里面不就好了，为什么还要再创建一个 news 目录？这是由于
+            Django 的模板查找机制会将所有应用里面的模板全部收集到一起，如果两个模板的名字冲突，就会导致其中一个模板不能被正确访问。如果放在
+            news 子文件夹里面，就能够通过 `news/index.html` 访问，通过**命名空间**的机制避免了冲突。
+
+
+            模板的代码如下：
+          post: >-
+            这短短几行模板代码却很好地覆盖了我们刚刚讲述的三个模板语法：表达式插值、条件语句和循环语句。如果忘记其中某个地方是什么意思的话，翻上去看看吧！
+      - file: news/views.py
+        display: true
+        explain:
+          pre: 完成模板的编写后，我们要在视图中对其进行渲染。打开 news/views.py 文件，修改代码如下：
+          post: >-
+            这里我们调用 `django.shortcuts.render`
+            函数来渲染模板，这个函数通常接受三个参数（有其他参数，但是这里我们不关心）：
+
+
+            - `request`：请求对象，直接把视图的参数 `request` 传进来就可以
+
+            - `template_name`：模板名称，这里就是我们刚刚创建的 `news/index.html`
+
+            -
+            `context`：传入模板的上下文对象，必须是一个字典，字典中的每个键对应模板中的变量。这里我们弄了些假数据，假装是从数据库里面取来的。
+    explain:
+      pre: >-
+        上一步中，我们学会了如何实现视图，并将其接入路由配置中，使其能够被用户访问。接下来，我们将实现一个 Django
+        模板作为网页前端，从而给用户呈现更丰富的内容。
+
+
+        > 如果你有过其他模板（或者类似技术）的开发经验，例如 Jinja、EJS 或是 JSP 等，对 Django
+        模板会有一种似曾相识的感觉。如果你不了解什么是模板引擎，也不用担心，简单的理解就是一个可以填充内容、甚至能够加入代码逻辑的**类似 HTML
+        文档**，最终会被转换成浏览器能够识别的 HTML 文档。
+
+
+        Django 模板本质上是一个 HTML 文档，只不过通过一些特殊的语法实现数据的填充。这里我们讲解一下最常用的三个语法：
+
+
+        **表达式插值**
+
+
+        最常用的语法，没有之一。通过在一对花括号 `{{}}` 放入一个表达式，就能够在视图中传入表达式中变量的内容，并最终渲染成包含变量具体内容的
+        HTML 代码。需要注意的是，所支持的表达式仅支持以下形式（可以自由组合）：
+
+
+        ```html
+
+        <!-- 单个变量 -->
+
+        {{ variable }}
+
+
+        <!-- 获取字典的键或对象的属性 -->
+
+        {{ dict.key }}
+
+        {{ object.attribute }}
+
+
+        <!-- 获取列表中的某个元素 -->
+
+        {{ list.0 }}
+
+        ```
+
+
+        例如，模板这样写：
+
+
+        ```html
+
+        <h1>{{ name }}</h1>
+
+        <p>{{ news.title }}</p>
+
+        <p>{{ news.visitors.0 }}</p>
+
+        ```
+
+
+        如果我们在视图中传入以下上下文字典（Context Dictionary）：
+
+
+        ```python
+
+        {
+            'name': 'Tuture',
+            'news': {
+                'title': 'Hello World',
+                'visitors': ['Tom', 'Marc'],
+            }
+        }
+
+        ```
+
+
+        那么最终渲染成的 HTML 代码就是：
+
+
+        ```html
+
+        <h1>Tuture</h1>
+
+        <p>Hello World</p>
+
+        <p>Tom</p>
+
+        ```
+
+
+        **条件语句**
+
+
+        条件语句的定义如下：
+
+
+        ```html
+
+        {% if is_true %}
+          <h1>It is true!</h1>
+        {% else %}
+          <h1>It is false!</h1>
+        {% endif %}
+
+        ```
+
+
+        如果变量 `is_true` 为真，那么最终渲染出来的就是 `<h1>It is true!</h1>`，否则就是 `<h1>It is
+        false!</h1>`。注意：整个条件语句**必须**以 `{% endif %}` 结束，并且 `{% else %}` 是**可选**的。
+
+
+        **循环语句**
+
+
+        循环语句用来在模板上展示任意长的列表内容。其语法如下：
+
+
+        ```html
+
+        {% for elem in some_list %}
+          <p>{{ elem }}</p>
+        {% endfor %}
+
+        ```
+
+
+        如果传入的 `some_list` 为 `['Apple', 'Banana', 'Orange']`，那么渲染出的 HTML 代码就是：
+
+
+        ```html
+
+        <p>Apple</p>
+
+        <p>Banana</p>
+
+        <p>Orange</p>
+
+        ```
+      post: |-
+        再访问 [localhost:8000](localhost:8000)，看一下我们的首页是不是有内容了：
+
+        ![](tuture-assets/image-94b9c2ed867bdc16.png)
+
+        完美！
+  - name: 理解模型：和数据库的联动
+    commit: f32f810
+    diff:
+      - file: news/models.py
+        display: true
+        explain:
+          pre: 终于到了动手的环节。我们首先定义数据模型 `Post` ，包括标题 `title` 字段和 `content` 字段，代码如下：
+          post: >-
+            定义好之后，运行以下命令创建迁移文件：
+
+
+            ```bash
+
+            python manage.py makemigrations
+
+            ```
+
+
+            可以看到输出如下：
+
+
+            ```text
+
+            Migrations for 'news':
+              news/migrations/0001_initial.py
+                - Create model Post
+            ```
+
+
+            并且成功地自动创建了 news/migrations/0001_initial.py 迁移脚本。接着我们进行数据库迁移：
+
+
+            ```bash
+
+            python manage.py migrate
+
+            ```
+
+
+            输出如下图所示：
+
+
+            ![](tuture-assets/migrate.png)
+
+
+            数据库迁移完成后，我们就可以创建用于登录后台管理的超级用户：
+
+
+            ```bash
+
+            python manage.py createsuperuser
+
+            ```
+
+
+            按照提示填写用户名和密码即可。然后访问
+            [localhost:8000/admin](localhost:8000/admin)，进入后台系统的登录页面：
+
+
+            ![](tuture-assets/admin-login.png)
+
+
+            填入刚才设置的用户名和密码，进入后台管理页面：
+
+
+            ![](tuture-assets/admin-1.png)
+
+
+            咦，我们刚才创建的 news 应用还有 Post 模型去哪了？
+      - file: news/admin.py
+        display: true
+        explain:
+          pre: 那是因为我们没有实现 news 应用的后台管理接口。在 news/admin.py 中填入代码如下：
+          post: |-
+            再次进入后台管理系统，可以看到我们的 news 应用和 Post 模型了：
+
+            ![](tuture-assets/admin-2.png)
+
+            点击 Posts 一栏的 +Add 按钮，开始添加新闻（内容随意）：
+
+            ![](tuture-assets/admin-3.png)
+
+            大概添加个两三条新闻就差不多啦。你也可以进一步探索后台管理系统，包括修改新闻、添加用户等等，都可以。
+      - file: news/views.py
+        display: true
+        explain:
+          pre: 最后，我们在视图中加入从数据库中查询的代码：
+      - file: news/migrations/0001_initial.py
+        display: false
+    explain:
+      post: >-
+        访问网站首页，可以看到刚才在后台管理系统添加的新闻了：
+
+
+        ![](tuture-assets/with-model.png)
+
+
+        大功告成！在这边教程中，我们完成了一个新闻发布网站，并且可以从后台管理系统中添加新闻，最终展示到我们的网站首页上。
+
+
+        希望这篇教程能够让你对 Django 最重要的一些概念和操作有了基本的了解。Django
+        还有很多很多的高级玩法，例如数据模型中的高级查询、字段索引、更换数据库等等，模板中的继承机制、内部标签等等，还有视图中如何处理各类请求（POST、PUT等），我们会在后续更多教程中逐一为大家讲解，不见不散！
+      pre: >-
+        Django 的 MTV，我们已经讲了 T（Template）和 V（View），现在来到了最后一关： M（Model）了。数据模型是
+        Django 入门最大的难点，消化这一步的内容需要花点力气，但是相信我，当你迈过 M 这最后一关，你便能真正上手 Django
+        开发了！下面我们先介绍一下 Django 的数据模型设计。
+
+
+        Django 在数据模型方面的设计堪称典范，列举一些闪光点：
+
+
+        - 由于高度解耦的设计，可轻松切换各种关系型数据库（默认的 SQLite，可选 MySQL、PostgreSQL、Oracle 等等）
+
+        - 强大的 ORM（Object Relation Mapping，对象关系映射）模块，使得用 Python 操作数据库非常轻松，免去了使用
+        SQL 的麻烦
+
+        - 优秀的数据库迁移机制（Migration），修改数据模式（Schema）比较方便，能够适应不断变化的功能需求
+
+
+        对于初学者而言，我们暂且选择默认的 SQLite 数据库，省去了配置数据库的烦恼。在后面的进阶教程中，我们会切换到其他适合生产环境的数据库。
+
+
+        **理解 ORM**
+
+
+        简单来说，ORM 能够将面向对象的代码转换成相应的 SQL 语句，从而对数据库进行操作。SQL
+        是用于访问和处理数据库的标准的计算机语言，但是直接写在代码里面显然难以维护，而且对使用者的要求也非常高，写的糟糕的 SQL
+        代码查询效率非常低下。因此，使用设计良好的 ORM 不仅让代码可读性更好，也能帮助开发者进行查询优化，节省不少力气。
+
+
+        我们来看一些简单的 Django ORM 例子：
+
+
+        ```python
+
+        # 查询所有模型
+
+        # 等价于 SELECT * FROM Blog
+
+        Blog.objects.all()
+
+
+        # 查询单个模型
+
+        # 等价于 SELECT * FROM Blog WHERE ID=1
+
+        Blog.objects.get(id=1)
+
+
+        # 添加单个模型
+
+        # 等价于 INSERT INTO Blog (title, content) VALUES ('hello', 'world')
+
+        blog = Blog(title='hello', content='world')
+
+        blog.save()
+
+        ```
+
+
+        有木有感觉操作起来比 SQL 方便很多呢？
+
+
+        **理解数据库迁移**
+
+
+        数据库迁移是指将用 Django 定义的模型转换成 SQL 代码（即迁移文件），并在数据库中进行建表操作（或更新表）。看下面这张图就知道了：
+
+
+        ![](tuture-assets/migration-flow.png)
+
+
+        一般的开发流程就是这样：
+
+
+        1. 用 Django 定义了一个新的数据模型
+
+        2. 用 `makemigrations` 命令创建迁移文件（存储在子应用的 migrations 目录里面）
+
+        3. 用 `migrate` 命令执行迁移
+
+        4. 在开发中发现第 1 步中定义的模型不完善，更新数据模型
+
+        5. 跳转到第 2 步，反复循环
