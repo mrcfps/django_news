@@ -12,7 +12,7 @@ description: >-
   框架，让你能够骑上这匹快马，在 Web 开发的战场上尽情驰骋。
 github: 'https://github.com/mRcfps/django_news'
 created: '2019-11-19T11:56:12.807Z'
-updated: 2019-11-21T07:42:56.001Z
+updated: 2019-11-25T01:52:15.843Z
 steps:
   - name: 起步
     commit: eae81c8
@@ -44,7 +44,7 @@ steps:
         的吉祥物是一只长着翅膀的小马。
 
 
-        ![](tuture-assets/django-logo.png)
+        ![](tuture-assets/django-logo.jpg)
 
 
         在这篇教程中，我们也将向 Django 的起源致敬——手把手带你开发一个新闻发布网站，并且可以从后台管理系统中添加新闻，展示到网站首页上。
@@ -158,7 +158,10 @@ steps:
       - file: django_news/settings.py
         display: true
         explain:
-          pre: 最后，我们在 settings.py 中将 news 应用加入 `INSTALLED_APPS` 中：
+          pre: |-
+            ### 将自定义 App 添加到全局配置
+
+            最后，我们在 settings.py 中将 news 应用加入 `INSTALLED_APPS` 中：
       - file: news/__init__.py
         display: false
       - file: news/admin.py
@@ -178,6 +181,12 @@ steps:
       pre: >-
         在上一节中我们讲到，Django 是一个高度**模块化**的框架。具体而言，一个 Django 应用由多个子应用组成，我们一般称之为
         App（注意不是我们常说的移动应用 APP，而是 Application 的简写），如下图所示。
+
+
+        ![](tuture-assets/django-apps.png)
+
+
+        ### Django App 的类别
 
 
         Django App 一般分为三大类（根据来源）：
@@ -207,6 +216,9 @@ steps:
         ```
 
 
+        ### 实现自定义 App
+
+
         话不多说，让我们来创建第一个自定义 App，名称为 news：
 
 
@@ -220,19 +232,19 @@ steps:
         生成的 news 应用文件夹结构如下所示：
 
 
-        ```
+        ```text
 
         news                     // news 应用目录
 
-        ├── __init__.py
+        ├── __init__.py          // 初始化模块
 
         ├── admin.py             // 后台管理配置
 
-        ├── apps.py
+        ├── apps.py              // 应用配置
 
         ├── migrations           // 数据库迁移文件目录
 
-        │   └── __init__.py
+        │   └── __init__.py      // 数据库迁移初始化模块
 
         ├── models.py            // 数据模型
 
@@ -244,7 +256,7 @@ steps:
 
 
         这个子目录里面乍一看好多文件啊！这是因为 Django
-        始终坚持**解耦**的原则——尽量减少代码之间的耦合，把不相关的代码拆成多个模块，让同一个模块具有**内聚性**。相信我，等到后面慢慢熟悉之后，你会对每一个模块都了然于胸的。
+        始终坚持**解耦**的原则——尽量减少代码之间的耦合，把不相关的代码拆成多个模块，让同一个模块具有**内聚性**。相信我，等到后面慢慢熟悉之后，你会对每一个模块都了如指掌的。
 
 
         实际上，每个 Django App 的组织结构符合 Django 的 MTV 法则——Model（模型）+ Template（模板）+
@@ -263,6 +275,9 @@ steps:
         display: true
         explain:
           pre: >-
+            ### 编写第一个视图
+
+
             对视图访问的流程大致了解之后，我们就可以开始动手了。首先打开 news/views.py，写一个简单的视图函数，返回一串 Hello
             World!：
           post: >-
@@ -272,7 +287,10 @@ steps:
       - file: news/urls.py
         display: true
         explain:
-          pre: 接着，我们要让路由系统能够访问到刚才写好的视图函数。因此先实现子应用 news 的路由表，创建 news/urls.py 文件如下：
+          pre: |-
+            ### 将视图接入路由
+
+            接着，我们要让路由系统能够访问到刚才写好的视图函数。因此先实现子应用 news 的路由表，创建 news/urls.py 文件如下：
           post: >-
             每一个 Django 路由表模块（urls.py）中都约定必须包含一个 `urlpatterns`
             列表用来存放路由映射表。列表中每个元素是一个用 `django.urls.path` 函数封装好的路由映射，通常接收以下三个参数：
@@ -309,6 +327,9 @@ steps:
         - 接入路由，使其能够被访问
 
 
+        ### Django 的路由系统
+
+
         Django 的路由系统是由**全局路由**和**子应用路由**组成。简单来说，根据用户输入的
         URL，全局路由表进行匹配并选择正确的子应用路由，再由所选择的子应用路由匹配并选择正确的视图（View）。整个流程如下图所示：
 
@@ -331,6 +352,9 @@ steps:
         display: true
         explain:
           pre: >-
+            ### 实现第一个 Django 模板
+
+
             到了动手时间了，我们先实现第一个 Django 模板。在 news 目录中创建一个 templates 目录，再在 templates
             目录中创建一个 news 目录，并在内层的 news 目录中创建 index.html 文件：
 
@@ -376,6 +400,9 @@ steps:
         > 如果你有过其他模板（或者类似技术）的开发经验，例如 Jinja、EJS 或是 JSP 等，对 Django
         模板会有一种似曾相识的感觉。如果你不了解什么是模板引擎，也不用担心，简单的理解就是一个可以填充内容、甚至能够加入代码逻辑的**类似 HTML
         文档**，最终会被转换成浏览器能够识别的 HTML 文档。
+
+
+        ### Django 模板语言基础
 
 
         Django 模板本质上是一个 HTML 文档，只不过通过一些特殊的语法实现数据的填充。这里我们讲解一下最常用的三个语法：
@@ -513,7 +540,10 @@ steps:
       - file: news/models.py
         display: true
         explain:
-          pre: 终于到了动手的环节。我们首先定义数据模型 `Post` ，包括标题 `title` 字段和 `content` 字段，代码如下：
+          pre: |-
+            ### 实现第一个数据模型
+
+            终于到了动手的环节。我们首先定义数据模型 `Post` ，包括标题 `title` 字段和 `content` 字段，代码如下：
           post: >-
             定义好之后，运行以下命令创建迁移文件：
 
@@ -579,7 +609,10 @@ steps:
       - file: news/admin.py
         display: true
         explain:
-          pre: 那是因为我们没有实现 news 应用的后台管理接口。在 news/admin.py 中填入代码如下：
+          pre: |-
+            ### 配置后台管理接口
+
+            那是因为我们没有实现 news 应用的后台管理接口。在 news/admin.py 中填入代码如下：
           post: |-
             再次进入后台管理系统，可以看到我们的 news 应用和 Post 模型了：
 
@@ -593,7 +626,10 @@ steps:
       - file: news/views.py
         display: true
         explain:
-          pre: 最后，我们在视图中加入从数据库中查询的代码：
+          pre: |-
+            ### 在视图中添加数据查询
+
+            最后，我们在视图中加入从数据库中查询的代码：
       - file: news/migrations/0001_initial.py
         display: false
     explain:
@@ -629,7 +665,7 @@ steps:
         对于初学者而言，我们暂且选择默认的 SQLite 数据库，省去了配置数据库的烦恼。在后面的进阶教程中，我们会切换到其他适合生产环境的数据库。
 
 
-        **理解 ORM**
+        ### 理解 ORM
 
 
         简单来说，ORM 能够将面向对象的代码转换成相应的 SQL 语句，从而对数据库进行操作。SQL
@@ -670,7 +706,7 @@ steps:
         有木有感觉操作起来比 SQL 方便很多呢？
 
 
-        **理解数据库迁移**
+        ### 理解数据库迁移
 
 
         数据库迁移是指将用 Django 定义的模型转换成 SQL 代码（即迁移文件），并在数据库中进行建表操作（或更新表）。看下面这张图就知道了：
