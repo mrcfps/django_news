@@ -1,4 +1,4 @@
-name: Django 快速入门教程
+name: 一杯茶的时间，上手 Django 框架开发
 id: 55d393c
 topics:
   - Django
@@ -11,6 +11,7 @@ description: >-
   搭建 Web 应用快速而又省力。然而，也正是因为过于强大，想要驾驭它需要花费不少的力气。本文将通过实现一个新闻发布网站带你快速熟悉 Django
   框架，让你能够骑上这匹快马，在 Web 开发的战场上尽情驰骋。
 github: 'https://github.com/mRcfps/django_news'
+cover: tuture-assets/cover.png
 created: '2019-11-19T11:56:12.807Z'
 updated: 2019-11-30T11:42:33.063Z
 steps:
