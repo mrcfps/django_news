@@ -13,7 +13,7 @@ description: >-
 github: 'https://github.com/mRcfps/django_news'
 cover: tuture-assets/cover.png
 created: '2019-11-19T11:56:12.807Z'
-updated: 2019-11-30T11:42:33.063Z
+updated: 2019-12-22T11:05:52.395Z
 steps:
   - name: 起步
     commit: eae81c8
@@ -49,6 +49,19 @@ steps:
 
 
         在这篇教程中，我们也将向 Django 的起源致敬——手把手带你开发一个新闻发布网站，并且可以从后台管理系统中添加新闻，展示到网站首页上。
+
+
+
+        ::: info
+
+        **提示**
+
+
+        这篇文章写作时用的是 Django 2.x 版本，发表时已经推出了 3.x 版本。不过经过笔者测试，这篇文章中的代码对于 2.x 和 3.x
+        都适用哦！
+
+        :::
+
 
 
         ### 预备知识
