@@ -13,7 +13,7 @@ description: >-
 github: 'https://github.com/mRcfps/django_news'
 cover: tuture-assets/cover.png
 created: '2019-11-19T11:56:12.807Z'
-updated: 2019-12-22T11:05:52.395Z
+updated: 2020-01-06T07:21:26.965Z
 steps:
   - name: 起步
     commit: eae81c8
@@ -41,8 +41,16 @@ steps:
         - 自带与数据库联动的**后台管理系统**，能够在开发的同时创建内容
 
 
-        > Django 的名字取自吉他手 Django Reinhardt，发音为 JANG-goh（谐音“尖狗”），但实际上 Django
+
+        ::: info
+
+        **提示**
+
+
+        Django 的名字取自吉他手 Django Reinhardt，发音为 JANG-goh（谐音“尖狗”），但实际上 Django
         的吉祥物是一只长着翅膀的小马。
+
+        :::
 
 
         ![](tuture-assets/django-logo.jpg)
@@ -52,13 +60,13 @@ steps:
 
 
 
-        ::: info
+        ::: warning
 
-        **提示**
+        **注意**
 
 
-        这篇文章写作时用的是 Django 2.x 版本，发表时已经推出了 3.x 版本。不过经过笔者测试，这篇文章中的代码对于 2.x 和 3.x
-        都适用哦！
+        这篇文章写作时用的是 Django 2.x 版本，发表时已经推出了 3.0.x 版本。经过笔者测试，在 Python 3.7 的环境下运行
+        Django 3.0.x 会出现 admin 无法登录的情形，可以选择降到 Python 3.6 及以下的版本，或安装 Django 2.x。
 
         :::
 
@@ -100,6 +108,10 @@ steps:
         ```bash
 
         pip install django
+
+        # 如果你用的是 Python 3.7，请安装 Django 2.2：
+
+        # pip install django==2.2
 
         ```
 
