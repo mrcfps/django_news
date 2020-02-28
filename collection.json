@@ -1,0 +1,3991 @@
+{
+  "name": "一杯茶的时间，上手 Django 框架开发",
+  "description": "Django 是 Python 社区的两大最受欢迎的 Web 框架之一（另一个是 Flask）。凭借功能强大的脚手架和诸多开箱即用的组件，用 Django 搭建 Web 应用快速而又省力。然而，也正是因为过于强大，想要驾驭它需要花费不少的力气。本文将通过实现一个新闻发布网站带你快速熟悉 Django 框架，让你能够骑上这匹快马，在 Web 开发的战场上尽情驰骋。",
+  "id": "55d393c",
+  "cover": ".tuture/assets/cover.png",
+  "created": "2019-11-19T11:56:12.807Z",
+  "topics": [
+    "Django"
+  ],
+  "categories": [
+    "后端",
+    "Python",
+    "入门"
+  ],
+  "articles": [
+    {
+      "name": "一杯茶的时间，上手 Django 框架开发",
+      "description": "Django 是 Python 社区的两大最受欢迎的 Web 框架之一（另一个是 Flask）。凭借功能强大的脚手架和诸多开箱即用的组件，用 Django 搭建 Web 应用快速而又省力。然而，也正是因为过于强大，想要驾驭它需要花费不少的力气。本文将通过实现一个新闻发布网站带你快速熟悉 Django 框架，让你能够骑上这匹快马，在 Web 开发的战场上尽情驰骋。",
+      "id": "55d393c",
+      "cover": ".tuture/assets/cover.png",
+      "created": "2019-11-19T11:56:12.807Z",
+      "topics": [
+        "Django"
+      ],
+      "categories": [
+        "后端",
+        "Python",
+        "入门"
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "type": "step",
+      "commit": "eae81c8",
+      "id": "WpsKkADj",
+      "articleId": "55d393c",
+      "children": [
+        {
+          "type": "heading-two",
+          "commit": "eae81c8",
+          "id": "_rtuCBZ_Y",
+          "fixed": true,
+          "children": [
+            {
+              "text": "起步"
+            }
+          ]
+        },
+        {
+          "type": "explain",
+          "fixed": true,
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "Django 由 Adrian Holovaty 和 Simon Willison 在 2003 年的秋天写成，并在 2005 年正式发布。他们俩当时为一个新闻报社制作网站，对"
+                },
+                {
+                  "bold": true,
+                  "text": "快速开发"
+                },
+                {
+                  "text": "有着比较高的需求，并且希望能够在开发的同时也能够"
+                },
+                {
+                  "bold": true,
+                  "text": "让非技术人员为网站添加内容"
+                },
+                {
+                  "text": "。于是这也使得 Django 具备了两项鲜明的特点："
+                }
+              ]
+            },
+            {
+              "type": "bulleted-list",
+              "children": [
+                {
+                  "type": "list-item",
+                  "children": [
+                    {
+                      "text": "高度强调"
+                    },
+                    {
+                      "bold": true,
+                      "text": "可复用性"
+                    },
+                    {
+                      "text": "和"
+                    },
+                    {
+                      "bold": true,
+                      "text": "可插拔性"
+                    },
+                    {
+                      "text": "，内置大量现成的成熟组件，开发效率极高"
+                    }
+                  ],
+                  "parent": "bulleted-list",
+                  "level": 0
+                },
+                {
+                  "type": "list-item",
+                  "children": [
+                    {
+                      "text": "自带与数据库联动的"
+                    },
+                    {
+                      "bold": true,
+                      "text": "后台管理系统"
+                    },
+                    {
+                      "text": "，能够在开发的同时创建内容"
+                    }
+                  ],
+                  "parent": "bulleted-list",
+                  "level": 0
+                }
+              ]
+            },
+            {
+              "type": "note",
+              "level": "info",
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "Django 的名字取自吉他手 Django Reinhardt，发音为 JANG-goh（谐音“尖狗”），但实际上 Django 的吉祥物是一只长着翅膀的小马。"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "image",
+                  "url": ".tuture/assets/django-logo.jpg",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "在这篇教程中，我们也将向 Django 的起源致敬——手把手带你开发一个新闻发布网站，并且可以从后台管理系统中添加新闻，展示到网站首页上。"
+                }
+              ]
+            },
+            {
+              "type": "note",
+              "level": "warning",
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "这篇文章写作时用的是 Django 2.x 版本，发表时已经推出了 3.0.x 版本。经过笔者测试，在 Python 3.7 的环境下运行 Django 3.0.x 会出现 admin 无法登录的情形，可以选择降到 Python 3.6 及以下的版本，或安装 Django 2.x。"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "heading-three",
+              "children": [
+                {
+                  "text": "预备知识"
+                }
+              ],
+              "id": "a8oa2BQNa"
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "本教程假定你已经知道了："
+                }
+              ]
+            },
+            {
+              "type": "bulleted-list",
+              "children": [
+                {
+                  "type": "list-item",
+                  "children": [
+                    {
+                      "text": "基本的 Python 3 语言知识，包括使用 pip 安装包"
+                    }
+                  ],
+                  "parent": "bulleted-list",
+                  "level": 0
+                },
+                {
+                  "type": "list-item",
+                  "children": [
+                    {
+                      "text": "了解 HTTP 协议基础知识，浏览器和服务器之间是如何互动的"
+                    }
+                  ],
+                  "parent": "bulleted-list",
+                  "level": 0
+                }
+              ]
+            },
+            {
+              "type": "heading-three",
+              "children": [
+                {
+                  "text": "学习目标"
+                }
+              ],
+              "id": "aI3f8N9fR"
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "读完这篇教程后，你将掌握 Django MTV 框架的精髓："
+                }
+              ]
+            },
+            {
+              "type": "bulleted-list",
+              "children": [
+                {
+                  "type": "list-item",
+                  "children": [
+                    {
+                      "text": "M（Model）：创建数据模型，并执行数据库迁移"
+                    }
+                  ],
+                  "parent": "bulleted-list",
+                  "level": 0
+                },
+                {
+                  "type": "list-item",
+                  "children": [
+                    {
+                      "text": "T（Template）：写出基本的 Django 模板，并从视图中传入数据"
+                    }
+                  ],
+                  "parent": "bulleted-list",
+                  "level": 0
+                },
+                {
+                  "type": "list-item",
+                  "children": [
+                    {
+                      "text": "V（View）：在视图中访问数据库，实现业务逻辑，渲染模板，并接入路由表"
+                    }
+                  ],
+                  "parent": "bulleted-list",
+                  "level": 0
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "虽然 Django 还有很多知识点，但是理解了 MTV，后面的知识点学习起来也就轻松多啦。"
+                }
+              ]
+            },
+            {
+              "type": "heading-three",
+              "children": [
+                {
+                  "text": "安装 Django 并启用脚手架"
+                }
+              ],
+              "id": "Wh3t8w4dM"
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "本文假定你已经安装好了 Python 3 和 pip，那么可以直接用 pip 安装 Django："
+                }
+              ]
+            },
+            {
+              "type": "code-block",
+              "lang": "bash",
+              "children": [
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "pip install django"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "# 如果你用的是 Python 3.7，请安装 Django 2.2："
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "# pip install django==2.2"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "block-quote",
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "直接用 pip 在全局安装 Django 的确不是一个很好的做法，用虚拟环境更符合最佳实践。为了减少初学者们的认知负担，在这里就简化了安装过程。熟悉 "
+                    },
+                    {
+                      "link": true,
+                      "url": "https://pipenv.kennethreitz.org",
+                      "text": "pipenv"
+                    },
+                    {
+                      "text": " 等虚拟环境工具的老司机当然可以自行使用哈。"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "安装好 Django 后，我们用 Django 自带的脚手架工具 django-admin 创建项目："
+                }
+              ]
+            },
+            {
+              "type": "code-block",
+              "lang": "bash",
+              "children": [
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "django-admin startproject django_news"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "cd django_news"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "生成的项目骨架及每个文件的作用如下所示："
+                }
+              ]
+            },
+            {
+              "type": "code-block",
+              "lang": "",
+              "children": [
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "django_news"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "├── django_news              // 项目全局文件目录"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "│   ├── __init__.py"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "│   ├── settings.py          // 全局配置"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "│   ├── urls.py              // 全局路由"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "│   └── wsgi.py              // WSGI服务接口（暂时不用纠结这个是神马）"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "└── manage.py                // 项目管理脚本"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "file",
+          "file": ".gitignore",
+          "id": "A4WhUCYBS",
+          "children": [
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "diff-block",
+              "file": ".gitignore",
+              "commit": "eae81c8",
+              "hiddenLines": [],
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "file",
+          "file": "django_news/__init__.py",
+          "display": false,
+          "id": "V6ePqI05b",
+          "children": [
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "diff-block",
+              "file": "django_news/__init__.py",
+              "commit": "eae81c8",
+              "hiddenLines": [],
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "file",
+          "file": "django_news/settings.py",
+          "display": false,
+          "id": "JsuEOEYCS",
+          "children": [
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "diff-block",
+              "file": "django_news/settings.py",
+              "commit": "eae81c8",
+              "hiddenLines": [],
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "file",
+          "file": "django_news/urls.py",
+          "display": false,
+          "id": "AeGqpjU7U",
+          "children": [
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "diff-block",
+              "file": "django_news/urls.py",
+              "commit": "eae81c8",
+              "hiddenLines": [],
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "file",
+          "file": "django_news/wsgi.py",
+          "display": false,
+          "id": "u4UzM6ZBH",
+          "children": [
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "diff-block",
+              "file": "django_news/wsgi.py",
+              "commit": "eae81c8",
+              "hiddenLines": [],
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "file",
+          "file": "manage.py",
+          "display": false,
+          "id": "QHym0mk-0",
+          "children": [
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "diff-block",
+              "file": "manage.py",
+              "commit": "eae81c8",
+              "hiddenLines": [],
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "explain",
+          "fixed": true,
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "我们使用 manage.py 来运行开发服务器（Development Server）："
+                }
+              ]
+            },
+            {
+              "type": "code-block",
+              "lang": "bash",
+              "children": [
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "python manage.py runserver"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "note",
+              "level": "info",
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "细心的你会发现出现了一行鲜红色的提示：You have 17 unapplied migration(s)…（省略 n 个字符）。不用担心，我们会在接下来的步骤中详细讲解来龙去脉。"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "按照提示，我们通过浏览器访问 "
+                },
+                {
+                  "link": true,
+                  "url": "localhost:8000",
+                  "text": "localhost:8000"
+                },
+                {
+                  "text": "，可以看到欢迎界面："
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "image",
+                  "url": ".tuture/assets/welcome.png",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "note",
+              "level": "info",
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "Django 开发服务器可以保持开启，并且后面修改代码会自动重新加载，非常方便。后面运行其他命令时，再打开一个终端（命令行）即可。"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "一切准备就绪，缰绳已在你手中！"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "commit": "d44af3d",
+      "id": "BIc9SbLIb",
+      "articleId": "55d393c",
+      "children": [
+        {
+          "type": "heading-two",
+          "commit": "d44af3d",
+          "id": "wfdeOSCnN",
+          "fixed": true,
+          "children": [
+            {
+              "text": "创建第一个自定义 Django App"
+            }
+          ]
+        },
+        {
+          "type": "explain",
+          "fixed": true,
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "在上一节中我们讲到，Django 是一个高度"
+                },
+                {
+                  "bold": true,
+                  "text": "模块化"
+                },
+                {
+                  "text": "的框架。具体而言，一个 Django 应用由多个子应用组成，我们一般称之为 App（注意不是我们常说的移动应用 APP，而是 Application 的简写），如下图所示。"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "image",
+                  "url": ".tuture/assets/django-apps.png",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "heading-three",
+              "children": [
+                {
+                  "text": "Django App 的类别"
+                }
+              ],
+              "id": "DGbINlrkT"
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "Django App 一般分为三大类（根据来源）："
+                }
+              ]
+            },
+            {
+              "type": "bulleted-list",
+              "children": [
+                {
+                  "type": "list-item",
+                  "children": [
+                    {
+                      "bold": true,
+                      "text": "内置"
+                    },
+                    {
+                      "text": "：即  Django 框架自带的应用，包括 admin（后台管理）、auth（身份鉴权）、sessions（会话管理）等等"
+                    }
+                  ],
+                  "parent": "bulleted-list",
+                  "level": 0
+                },
+                {
+                  "type": "list-item",
+                  "children": [
+                    {
+                      "bold": true,
+                      "text": "自定义"
+                    },
+                    {
+                      "text": "：即用来实现我们自身业务逻辑的应用，这里我们将创建一个新闻展示应用"
+                    }
+                  ],
+                  "parent": "bulleted-list",
+                  "level": 0
+                },
+                {
+                  "type": "list-item",
+                  "children": [
+                    {
+                      "bold": true,
+                      "text": "第三方"
+                    },
+                    {
+                      "text": "：即社区提供的应用，数量极其丰富，功能涵盖几乎所有方面，能够大大减少开发成本"
+                    }
+                  ],
+                  "parent": "bulleted-list",
+                  "level": 0
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "所有的 Django 应用都在 django_news/settings.py 的 "
+                },
+                {
+                  "code": true,
+                  "text": "INSTALLED_APPS"
+                },
+                {
+                  "text": " 列表中定义："
+                }
+              ]
+            },
+            {
+              "type": "code-block",
+              "lang": "python",
+              "children": [
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "INSTALLED_APPS = ["
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "    'django.contrib.admin',"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "    'django.contrib.auth',"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "    'django.contrib.contenttypes',"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "    'django.contrib.sessions',"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "    'django.contrib.messages',"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "    'django.contrib.staticfiles',"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "]"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "heading-three",
+              "children": [
+                {
+                  "text": "实现自定义 App"
+                }
+              ],
+              "id": "H5dVu9RCi"
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "话不多说，让我们来创建第一个自定义 App，名称为 news："
+                }
+              ]
+            },
+            {
+              "type": "code-block",
+              "lang": "bash",
+              "children": [
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "python manage.py startapp news"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "生成的 news 应用文件夹结构如下所示："
+                }
+              ]
+            },
+            {
+              "type": "code-block",
+              "lang": "text",
+              "children": [
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "news                     // news 应用目录"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "├── __init__.py          // 初始化模块"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "├── admin.py             // 后台管理配置"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "├── apps.py              // 应用配置"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "├── migrations           // 数据库迁移文件目录"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "│   └── __init__.py      // 数据库迁移初始化模块"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "├── models.py            // 数据模型"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "├── tests.py             // 单元测试"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "└── views.py             // 视图"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "这个子目录里面乍一看好多文件啊！这是因为 Django 始终坚持"
+                },
+                {
+                  "bold": true,
+                  "text": "解耦"
+                },
+                {
+                  "text": "的原则——尽量减少代码之间的耦合，把不相关的代码拆成多个模块，让同一个模块具有"
+                },
+                {
+                  "bold": true,
+                  "text": "内聚性"
+                },
+                {
+                  "text": "。相信我，等到后面慢慢熟悉之后，你会对每一个模块都了如指掌的。"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "实际上，每个 Django App 的组织结构符合 Django 的 MTV 法则——Model（模型）+ Template（模板）+ View（视图）。MTV 与大家比较熟悉的 MVC 在思想上非常相似，但是命名有比较大的出入，如下表所示："
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "image",
+                  "url": ".tuture/assets/image.png",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "大家熟知的 View，在 Django 里面代表的是业务逻辑，也就是 MVC 中的控制器哦！"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "file",
+          "file": "django_news/settings.py",
+          "display": true,
+          "id": "LiaXN56Pz",
+          "children": [
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "heading-three",
+                  "children": [
+                    {
+                      "text": "将自定义 App 添加到全局配置"
+                    }
+                  ],
+                  "id": "BElugKmHWN"
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "最后，我们在 settings.py 中将 news 应用加入 "
+                    },
+                    {
+                      "code": true,
+                      "text": "INSTALLED_APPS"
+                    },
+                    {
+                      "text": " 中："
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "diff-block",
+              "file": "django_news/settings.py",
+              "commit": "d44af3d",
+              "hiddenLines": [],
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "file",
+          "file": "news/__init__.py",
+          "display": false,
+          "id": "URy4CVY2Uy",
+          "children": [
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "diff-block",
+              "file": "news/__init__.py",
+              "commit": "d44af3d",
+              "hiddenLines": [],
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "file",
+          "file": "news/admin.py",
+          "display": false,
+          "id": "XqMBOeg837",
+          "children": [
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "diff-block",
+              "file": "news/admin.py",
+              "commit": "d44af3d",
+              "hiddenLines": [],
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "file",
+          "file": "news/apps.py",
+          "display": false,
+          "id": "VUBqOZipqA",
+          "children": [
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "diff-block",
+              "file": "news/apps.py",
+              "commit": "d44af3d",
+              "hiddenLines": [],
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "file",
+          "file": "news/migrations/__init__.py",
+          "display": false,
+          "id": "I5so_e6sVd",
+          "children": [
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "diff-block",
+              "file": "news/migrations/__init__.py",
+              "commit": "d44af3d",
+              "hiddenLines": [],
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "file",
+          "file": "news/models.py",
+          "display": false,
+          "id": "_2hmpWh8Bq",
+          "children": [
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "diff-block",
+              "file": "news/models.py",
+              "commit": "d44af3d",
+              "hiddenLines": [],
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "file",
+          "file": "news/tests.py",
+          "display": false,
+          "id": "WZUlWRWhSc",
+          "children": [
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "diff-block",
+              "file": "news/tests.py",
+              "commit": "d44af3d",
+              "hiddenLines": [],
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "file",
+          "file": "news/views.py",
+          "display": false,
+          "id": "pEG2VlzZhe",
+          "children": [
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "diff-block",
+              "file": "news/views.py",
+              "commit": "d44af3d",
+              "hiddenLines": [],
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "file",
+          "file": "tuture.yml",
+          "id": "uOFgwcGsM4",
+          "children": [
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "diff-block",
+              "file": "tuture.yml",
+              "commit": "d44af3d",
+              "hiddenLines": [],
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "explain",
+          "fixed": true,
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "至此，我们已经创建了第一个 Django 应用！但是现在这个应用还没有任何内容，我们接下来将逐步完善这个应用。"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "commit": "108ba94",
+      "id": "6P-G6haS_t",
+      "articleId": "55d393c",
+      "children": [
+        {
+          "type": "heading-two",
+          "commit": "108ba94",
+          "id": "PDS6EcvabL",
+          "fixed": true,
+          "children": [
+            {
+              "text": "理解视图：业务逻辑的编写"
+            }
+          ]
+        },
+        {
+          "type": "explain",
+          "fixed": true,
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "也许你已经注意到，通过访问 "
+                },
+                {
+                  "link": true,
+                  "url": "localhost:8000/admin",
+                  "text": "localhost:8000/admin"
+                },
+                {
+                  "text": " 已经可以访问后台管理系统了（虽然会跳转到登录界面）。接下来，我们也希望能够访问到刚才创建的 news 应用。因此，这一步中我们将："
+                }
+              ]
+            },
+            {
+              "type": "bulleted-list",
+              "children": [
+                {
+                  "type": "list-item",
+                  "children": [
+                    {
+                      "text": "在视图（View）中写一点业务逻辑"
+                    }
+                  ],
+                  "parent": "bulleted-list",
+                  "level": 0
+                },
+                {
+                  "type": "list-item",
+                  "children": [
+                    {
+                      "text": "接入路由，使其能够被访问"
+                    }
+                  ],
+                  "parent": "bulleted-list",
+                  "level": 0
+                }
+              ]
+            },
+            {
+              "type": "heading-three",
+              "children": [
+                {
+                  "text": "Django 的路由系统"
+                }
+              ],
+              "id": "XluEaS7WDe"
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "Django 的路由系统是由"
+                },
+                {
+                  "bold": true,
+                  "text": "全局路由"
+                },
+                {
+                  "text": "和"
+                },
+                {
+                  "bold": true,
+                  "text": "子应用路由"
+                },
+                {
+                  "text": "组成。简单来说，根据用户输入的 URL，全局路由表进行匹配并选择正确的子应用路由，再由所选择的子应用路由匹配并选择正确的视图（View）。整个流程如下图所示："
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "image",
+                  "url": ".tuture/assets/router.png",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "例如，用户访问 example.com/apple/buy，然后全局路由根据 /apple/buy 先选择 apple 的路由表，再从 apple 路由表中根据 /buy 选择 /buy 路由，然后执行 /buy 对应的 BuyView 视图，返回给用户结果。"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "file",
+          "file": "news/views.py",
+          "display": true,
+          "id": "yhqi0IUYhc",
+          "children": [
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "heading-three",
+                  "children": [
+                    {
+                      "text": "编写第一个视图"
+                    }
+                  ],
+                  "id": "KQfiHqpWUg"
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "对视图访问的流程大致了解之后，我们就可以开始动手了。首先打开 news/views.py，写一个简单的视图函数，返回一串 Hello World!："
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "diff-block",
+              "file": "news/views.py",
+              "commit": "108ba94",
+              "hiddenLines": [],
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "上面这个 "
+                    },
+                    {
+                      "code": true,
+                      "text": "index"
+                    },
+                    {
+                      "text": " 函数可以说是一个最简单的视图函数了，实际大部分应用的视图要比这复杂得多。Django 同时支持"
+                    },
+                    {
+                      "bold": true,
+                      "text": "基于函数的视图"
+                    },
+                    {
+                      "text": "（FBV，Function-based View）和"
+                    },
+                    {
+                      "bold": true,
+                      "text": "基于类的视图"
+                    },
+                    {
+                      "text": "（CBV，Class-based View），这里显然是 FBV，接收一个 "
+                    },
+                    {
+                      "code": true,
+                      "text": "request"
+                    },
+                    {
+                      "text": " 请求对象作为参数，返回了一个 "
+                    },
+                    {
+                      "code": true,
+                      "text": "HttpResponse"
+                    },
+                    {
+                      "text": " 对象。"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "file",
+          "file": "news/urls.py",
+          "display": true,
+          "id": "CL9Spi9I6u",
+          "children": [
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "heading-three",
+                  "children": [
+                    {
+                      "text": "将视图接入路由"
+                    }
+                  ],
+                  "id": "HxEcJlIrVa"
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "接着，我们要让路由系统能够访问到刚才写好的视图函数。因此先实现子应用 news 的路由表，创建 news/urls.py 文件如下："
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "diff-block",
+              "file": "news/urls.py",
+              "commit": "108ba94",
+              "hiddenLines": [],
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "每一个 Django 路由表模块（urls.py）中都约定必须包含一个 "
+                    },
+                    {
+                      "code": true,
+                      "text": "urlpatterns"
+                    },
+                    {
+                      "text": " 列表用来存放路由映射表。列表中每个元素是一个用 "
+                    },
+                    {
+                      "code": true,
+                      "text": "django.urls.path"
+                    },
+                    {
+                      "text": " 函数封装好的路由映射，通常接收以下三个参数："
+                    }
+                  ]
+                },
+                {
+                  "type": "bulleted-list",
+                  "children": [
+                    {
+                      "type": "list-item",
+                      "children": [
+                        {
+                          "code": true,
+                          "text": "route"
+                        },
+                        {
+                          "text": "：必须，即实际的访问路由，空字符串等于 "
+                        },
+                        {
+                          "code": true,
+                          "text": "/"
+                        },
+                        {
+                          "text": "，即空路由"
+                        }
+                      ],
+                      "parent": "bulleted-list",
+                      "level": 0
+                    },
+                    {
+                      "type": "list-item",
+                      "children": [
+                        {
+                          "code": true,
+                          "text": "view"
+                        },
+                        {
+                          "text": "：必须，该路由将要访问的视图"
+                        }
+                      ],
+                      "parent": "bulleted-list",
+                      "level": 0
+                    },
+                    {
+                      "type": "list-item",
+                      "children": [
+                        {
+                          "code": true,
+                          "text": "name"
+                        },
+                        {
+                          "text": "：可选，该路由的名称，方便后续在模板中使用"
+                        }
+                      ],
+                      "parent": "bulleted-list",
+                      "level": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "file",
+          "file": "django_news/urls.py",
+          "display": true,
+          "id": "UM0FydfikT",
+          "children": [
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "我们将刚刚写好的 news 路由表接入全局路由表。由于我们希望新闻能够展示在首页（即通过 "
+                    },
+                    {
+                      "code": true,
+                      "text": "/"
+                    },
+                    {
+                      "text": " 就能访问，无需 "
+                    },
+                    {
+                      "code": true,
+                      "text": "/news"
+                    },
+                    {
+                      "text": "），因此 news 应用路由在全局路由中的 URL 是一个空字符串。在 django_news/urls.py 中修改如下："
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "diff-block",
+              "file": "django_news/urls.py",
+              "commit": "108ba94",
+              "hiddenLines": [],
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "这里使用 "
+                    },
+                    {
+                      "code": true,
+                      "text": "django.urls.include"
+                    },
+                    {
+                      "text": " 函数将 news 应用的路由表接入进来，并且 "
+                    },
+                    {
+                      "code": true,
+                      "text": "include"
+                    },
+                    {
+                      "text": " 函数的参数是路由模块路径的字符串 "
+                    },
+                    {
+                      "code": true,
+                      "text": "news.urls"
+                    },
+                    {
+                      "text": "，省去了手动 "
+                    },
+                    {
+                      "code": true,
+                      "text": "import"
+                    },
+                    {
+                      "text": " 的麻烦。"
+                    }
+                  ]
+                },
+                {
+                  "type": "note",
+                  "level": "warning",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "children": [
+                        {
+                          "text": "添加路由规则时顺序是很重要的，因为在尝试匹配时会按照从上到下的顺序进行，因此应该把最模糊的路由（即空路由）放在最下面。"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "file",
+          "file": ".editorconfig",
+          "display": false,
+          "id": "w1Ecl8xI2e",
+          "children": [
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "diff-block",
+              "file": ".editorconfig",
+              "commit": "108ba94",
+              "hiddenLines": [],
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "file",
+          "file": "tuture.yml",
+          "id": "kfQFed8JLU",
+          "children": [
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "diff-block",
+              "file": "tuture.yml",
+              "commit": "108ba94",
+              "hiddenLines": [],
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "explain",
+          "fixed": true,
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "如果你开发服务器还在运行（如果没有可以再打开），访问 "
+                },
+                {
+                  "link": true,
+                  "url": "localhost:8000",
+                  "text": "localhost:8000"
+                },
+                {
+                  "text": "，就可以看到那一串熟悉的字符了："
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "image",
+                  "url": ".tuture/assets/image-5d7b188345eefd43.png",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "commit": "e657040",
+      "id": "PeQ4UcLuaQ",
+      "articleId": "55d393c",
+      "children": [
+        {
+          "type": "heading-two",
+          "commit": "e657040",
+          "id": "WMxaKPIV-E",
+          "fixed": true,
+          "children": [
+            {
+              "text": "理解模板：网页前端的实现"
+            }
+          ]
+        },
+        {
+          "type": "explain",
+          "fixed": true,
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "上一步中，我们学会了如何实现视图，并将其接入路由配置中，使其能够被用户访问。接下来，我们将实现一个 Django 模板作为网页前端，从而给用户呈现更丰富的内容。"
+                }
+              ]
+            },
+            {
+              "type": "note",
+              "level": "info",
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "如果你有过其他模板（或者类似技术）的开发经验，例如 Jinja、EJS 或是 JSP 等，对 Django 模板会有一种似曾相识的感觉。如果你不了解什么是模板引擎，也不用担心，简单的理解就是一个可以填充内容、甚至能够加入代码逻辑的"
+                    },
+                    {
+                      "bold": true,
+                      "text": "类似 HTML 文档"
+                    },
+                    {
+                      "text": "，最终会被转换成浏览器能够识别的 HTML 文档。"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "heading-three",
+              "children": [
+                {
+                  "text": "Django 模板语言基础"
+                }
+              ],
+              "id": "DWEYw-ZGob"
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "Django 模板本质上是一个 HTML 文档，只不过通过一些特殊的语法实现数据的填充。这里我们讲解一下最常用的三个语法："
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "bold": true,
+                  "text": "表达式插值"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "最常用的语法，没有之一。通过在一对花括号 "
+                },
+                {
+                  "code": true,
+                  "text": "{{}}"
+                },
+                {
+                  "text": " 放入一个表达式，就能够在视图中传入表达式中变量的内容，并最终渲染成包含变量具体内容的 HTML 代码。需要注意的是，所支持的表达式仅支持以下形式（可以自由组合）："
+                }
+              ]
+            },
+            {
+              "type": "code-block",
+              "lang": "html",
+              "children": [
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "<!-- 单个变量 -->"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "{{ variable }}"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "<!-- 获取字典的键或对象的属性 -->"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "{{ dict.key }}"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "{{ object.attribute }}"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "<!-- 获取列表中的某个元素 -->"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "{{ list.0 }}"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "例如，模板这样写："
+                }
+              ]
+            },
+            {
+              "type": "code-block",
+              "lang": "html",
+              "children": [
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "<h1>{{ name }}</h1>"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "<p>{{ news.title }}</p>"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "<p>{{ news.visitors.0 }}</p>"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "如果我们在视图中传入以下上下文字典（Context Dictionary）："
+                }
+              ]
+            },
+            {
+              "type": "code-block",
+              "lang": "python",
+              "children": [
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "{"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "    'name': 'Tuture',"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "    'news': {"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "        'title': 'Hello World',"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "        'visitors': ['Tom', 'Marc'],"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "    }"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "}"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "那么最终渲染成的 HTML 代码就是："
+                }
+              ]
+            },
+            {
+              "type": "code-block",
+              "lang": "html",
+              "children": [
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "<h1>Tuture</h1>"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "<p>Hello World</p>"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "<p>Tom</p>"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "bold": true,
+                  "text": "条件语句"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "条件语句的定义如下："
+                }
+              ]
+            },
+            {
+              "type": "code-block",
+              "lang": "html",
+              "children": [
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "{% if is_true %}"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "  <h1>It is true!</h1>"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "{% else %}"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "  <h1>It is false!</h1>"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "{% endif %}"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "如果变量 "
+                },
+                {
+                  "code": true,
+                  "text": "is_true"
+                },
+                {
+                  "text": " 为真，那么最终渲染出来的就是 "
+                },
+                {
+                  "code": true,
+                  "text": "<h1>It is true!</h1>"
+                },
+                {
+                  "text": "，否则就是 "
+                },
+                {
+                  "code": true,
+                  "text": "<h1>It is false!</h1>"
+                },
+                {
+                  "text": "。注意：整个条件语句"
+                },
+                {
+                  "bold": true,
+                  "text": "必须"
+                },
+                {
+                  "text": "以 "
+                },
+                {
+                  "code": true,
+                  "text": "{% endif %}"
+                },
+                {
+                  "text": " 结束，并且 "
+                },
+                {
+                  "code": true,
+                  "text": "{% else %}"
+                },
+                {
+                  "text": " 是"
+                },
+                {
+                  "bold": true,
+                  "text": "可选"
+                },
+                {
+                  "text": "的。"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "bold": true,
+                  "text": "循环语句"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "循环语句用来在模板上展示任意长的列表内容。其语法如下："
+                }
+              ]
+            },
+            {
+              "type": "code-block",
+              "lang": "html",
+              "children": [
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "{% for elem in some_list %}"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "  <p>{{ elem }}</p>"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "{% endfor %}"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "如果传入的 "
+                },
+                {
+                  "code": true,
+                  "text": "some_list"
+                },
+                {
+                  "text": " 为 "
+                },
+                {
+                  "code": true,
+                  "text": "['Apple', 'Banana', 'Orange']"
+                },
+                {
+                  "text": "，那么渲染出的 HTML 代码就是："
+                }
+              ]
+            },
+            {
+              "type": "code-block",
+              "lang": "html",
+              "children": [
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "<p>Apple</p>"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "<p>Banana</p>"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "<p>Orange</p>"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "file",
+          "file": "news/templates/news/index.html",
+          "display": true,
+          "id": "SQ6_oQxtI9",
+          "children": [
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "heading-three",
+                  "children": [
+                    {
+                      "text": "实现第一个 Django 模板"
+                    }
+                  ],
+                  "id": "ofSB9pQLI6"
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "到了动手时间了，我们先实现第一个 Django 模板。在 news 目录中创建一个 templates 目录，再在 templates 目录中创建一个 news 目录，并在内层的 news 目录中创建 index.html 文件："
+                    }
+                  ]
+                },
+                {
+                  "type": "code-block",
+                  "lang": "bash",
+                  "children": [
+                    {
+                      "type": "code-line",
+                      "children": [
+                        {
+                          "text": "mkdir -p news/templates/news"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "code-line",
+                      "children": [
+                        {
+                          "text": "touch news/templates/news/index.html"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "note",
+                  "level": "primary",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "children": [
+                        {
+                          "text": "听上去很麻烦，只创建 "
+                        },
+                        {
+                          "code": true,
+                          "text": "news/templates"
+                        },
+                        {
+                          "text": "，然后把模板放里面不就好了，为什么还要再创建一个 news 目录？这是由于 Django 的模板查找机制会将所有应用里面的模板全部收集到一起，如果两个模板的名字冲突，就会导致其中一个模板不能被正确访问。如果放在 news 子文件夹里面，就能够通过 "
+                        },
+                        {
+                          "code": true,
+                          "text": "news/index.html"
+                        },
+                        {
+                          "text": " 访问，通过"
+                        },
+                        {
+                          "bold": true,
+                          "text": "命名空间"
+                        },
+                        {
+                          "text": "的机制避免了冲突。"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "模板的代码如下："
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "diff-block",
+              "file": "news/templates/news/index.html",
+              "commit": "e657040",
+              "hiddenLines": [],
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "这短短几行模板代码却很好地覆盖了我们刚刚讲述的三个模板语法：表达式插值、条件语句和循环语句。如果忘记其中某个地方是什么意思的话，翻上去看看吧！"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "file",
+          "file": "news/views.py",
+          "display": true,
+          "id": "sx_yNXmgqj",
+          "children": [
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "完成模板的编写后，我们要在视图中对其进行渲染。打开 news/views.py 文件，修改代码如下："
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "diff-block",
+              "file": "news/views.py",
+              "commit": "e657040",
+              "hiddenLines": [],
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "这里我们调用 "
+                    },
+                    {
+                      "code": true,
+                      "text": "django.shortcuts.render"
+                    },
+                    {
+                      "text": " 函数来渲染模板，这个函数通常接受三个参数（有其他参数，但是这里我们不关心）："
+                    }
+                  ]
+                },
+                {
+                  "type": "bulleted-list",
+                  "children": [
+                    {
+                      "type": "list-item",
+                      "children": [
+                        {
+                          "code": true,
+                          "text": "request"
+                        },
+                        {
+                          "text": "：请求对象，直接把视图的参数 "
+                        },
+                        {
+                          "code": true,
+                          "text": "request"
+                        },
+                        {
+                          "text": " 传进来就可以"
+                        }
+                      ],
+                      "parent": "bulleted-list",
+                      "level": 0
+                    },
+                    {
+                      "type": "list-item",
+                      "children": [
+                        {
+                          "code": true,
+                          "text": "template_name"
+                        },
+                        {
+                          "text": "：模板名称，这里就是我们刚刚创建的 "
+                        },
+                        {
+                          "code": true,
+                          "text": "news/index.html"
+                        }
+                      ],
+                      "parent": "bulleted-list",
+                      "level": 0
+                    },
+                    {
+                      "type": "list-item",
+                      "children": [
+                        {
+                          "code": true,
+                          "text": "context"
+                        },
+                        {
+                          "text": "：传入模板的上下文对象，必须是一个字典，字典中的每个键对应模板中的变量。这里我们弄了些假数据，假装是从数据库里面取来的。"
+                        }
+                      ],
+                      "parent": "bulleted-list",
+                      "level": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "explain",
+          "fixed": true,
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "再访问 "
+                },
+                {
+                  "link": true,
+                  "url": "localhost:8000",
+                  "text": "localhost:8000"
+                },
+                {
+                  "text": "，看一下我们的首页是不是有内容了："
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "image",
+                  "url": ".tuture/assets/image-94b9c2ed867bdc16.png",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "完美！"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "commit": "f32f810",
+      "id": "CAMHSbqNgj",
+      "articleId": "55d393c",
+      "children": [
+        {
+          "type": "heading-two",
+          "commit": "f32f810",
+          "id": "hSC8KXTmLG",
+          "fixed": true,
+          "children": [
+            {
+              "text": "理解模型：和数据库的联动"
+            }
+          ]
+        },
+        {
+          "type": "explain",
+          "fixed": true,
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "Django 的 MTV，我们已经讲了 T（Template）和 V（View），现在来到了最后一关： M（Model）了。数据模型是 Django 入门最大的难点，消化这一步的内容需要花点力气，但是相信我，当你迈过 M 这最后一关，你便能真正上手 Django 开发了！下面我们先介绍一下 Django 的数据模型设计。"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "Django 在数据模型方面的设计堪称典范，列举一些闪光点："
+                }
+              ]
+            },
+            {
+              "type": "bulleted-list",
+              "children": [
+                {
+                  "type": "list-item",
+                  "children": [
+                    {
+                      "text": "由于高度解耦的设计，可轻松切换各种关系型数据库（默认的 SQLite，可选 MySQL、PostgreSQL、Oracle 等等）"
+                    }
+                  ],
+                  "parent": "bulleted-list",
+                  "level": 0
+                },
+                {
+                  "type": "list-item",
+                  "children": [
+                    {
+                      "text": "强大的 ORM（Object Relation Mapping，对象关系映射）模块，使得用 Python 操作数据库非常轻松，免去了使用 SQL 的麻烦"
+                    }
+                  ],
+                  "parent": "bulleted-list",
+                  "level": 0
+                },
+                {
+                  "type": "list-item",
+                  "children": [
+                    {
+                      "text": "优秀的数据库迁移机制（Migration），修改数据模式（Schema）比较方便，能够适应不断变化的功能需求"
+                    }
+                  ],
+                  "parent": "bulleted-list",
+                  "level": 0
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "对于初学者而言，我们暂且选择默认的 SQLite 数据库，省去了配置数据库的烦恼。在后面的进阶教程中，我们会切换到其他适合生产环境的数据库。"
+                }
+              ]
+            },
+            {
+              "type": "heading-three",
+              "children": [
+                {
+                  "text": "理解 ORM"
+                }
+              ],
+              "id": "9w8zmtfEwt"
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "简单来说，ORM 能够将面向对象的代码转换成相应的 SQL 语句，从而对数据库进行操作。SQL 是用于访问和处理数据库的标准的计算机语言，但是直接写在代码里面显然难以维护，而且对使用者的要求也非常高，写的糟糕的 SQL 代码查询效率非常低下。因此，使用设计良好的 ORM 不仅让代码可读性更好，也能帮助开发者进行查询优化，节省不少力气。"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "我们来看一些简单的 Django ORM 例子："
+                }
+              ]
+            },
+            {
+              "type": "code-block",
+              "lang": "python",
+              "children": [
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "# 查询所有模型"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "# 等价于 SELECT * FROM Blog"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "Blog.objects.all()"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "# 查询单个模型"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "# 等价于 SELECT * FROM Blog WHERE ID=1"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "Blog.objects.get(id=1)"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "# 添加单个模型"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "# 等价于 INSERT INTO Blog (title, content) VALUES ('hello', 'world')"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "blog = Blog(title='hello', content='world')"
+                    }
+                  ]
+                },
+                {
+                  "type": "code-line",
+                  "children": [
+                    {
+                      "text": "blog.save()"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "有木有感觉操作起来比 SQL 方便很多呢？"
+                }
+              ]
+            },
+            {
+              "type": "heading-three",
+              "children": [
+                {
+                  "text": "理解数据库迁移"
+                }
+              ],
+              "id": "m5tpBHTA0W"
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "数据库迁移是指将用 Django 定义的模型转换成 SQL 代码（即迁移文件），并在数据库中进行建表操作（或更新表）。看下面这张图就知道了："
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "image",
+                  "url": ".tuture/assets/migration-flow.png",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "一般的开发流程就是这样："
+                }
+              ]
+            },
+            {
+              "type": "numbered-list",
+              "children": [
+                {
+                  "type": "list-item",
+                  "children": [
+                    {
+                      "text": "用 Django 定义了一个新的数据模型"
+                    }
+                  ],
+                  "parent": "numbered-list",
+                  "level": 0,
+                  "number": 1
+                },
+                {
+                  "type": "list-item",
+                  "children": [
+                    {
+                      "text": "用 "
+                    },
+                    {
+                      "code": true,
+                      "text": "makemigrations"
+                    },
+                    {
+                      "text": " 命令创建迁移文件（存储在子应用的 migrations 目录里面）"
+                    }
+                  ],
+                  "parent": "numbered-list",
+                  "level": 0,
+                  "number": 2
+                },
+                {
+                  "type": "list-item",
+                  "children": [
+                    {
+                      "text": "用 "
+                    },
+                    {
+                      "code": true,
+                      "text": "migrate"
+                    },
+                    {
+                      "text": " 命令执行迁移"
+                    }
+                  ],
+                  "parent": "numbered-list",
+                  "level": 0,
+                  "number": 3
+                },
+                {
+                  "type": "list-item",
+                  "children": [
+                    {
+                      "text": "在开发中发现第 1 步中定义的模型不完善，更新数据模型"
+                    }
+                  ],
+                  "parent": "numbered-list",
+                  "level": 0,
+                  "number": 4
+                },
+                {
+                  "type": "list-item",
+                  "children": [
+                    {
+                      "text": "跳转到第 2 步，反复循环"
+                    }
+                  ],
+                  "parent": "numbered-list",
+                  "level": 0,
+                  "number": 5
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "file",
+          "file": "news/models.py",
+          "display": true,
+          "id": "EPnAmy5pV9",
+          "children": [
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "heading-three",
+                  "children": [
+                    {
+                      "text": "实现第一个数据模型"
+                    }
+                  ],
+                  "id": "yOYDaFtmks"
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "终于到了动手的环节。我们首先定义数据模型 "
+                    },
+                    {
+                      "code": true,
+                      "text": "Post"
+                    },
+                    {
+                      "text": " ，包括标题 "
+                    },
+                    {
+                      "code": true,
+                      "text": "title"
+                    },
+                    {
+                      "text": " 字段和 "
+                    },
+                    {
+                      "code": true,
+                      "text": "content"
+                    },
+                    {
+                      "text": " 字段，代码如下："
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "diff-block",
+              "file": "news/models.py",
+              "commit": "f32f810",
+              "hiddenLines": [],
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "定义好之后，运行以下命令创建迁移文件："
+                    }
+                  ]
+                },
+                {
+                  "type": "code-block",
+                  "lang": "bash",
+                  "children": [
+                    {
+                      "type": "code-line",
+                      "children": [
+                        {
+                          "text": "python manage.py makemigrations"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "可以看到输出如下："
+                    }
+                  ]
+                },
+                {
+                  "type": "code-block",
+                  "lang": "text",
+                  "children": [
+                    {
+                      "type": "code-line",
+                      "children": [
+                        {
+                          "text": "Migrations for 'news':"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "code-line",
+                      "children": [
+                        {
+                          "text": "  news/migrations/0001_initial.py"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "code-line",
+                      "children": [
+                        {
+                          "text": "    - Create model Post"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "并且成功地自动创建了 news/migrations/0001_initial.py 迁移脚本。接着我们进行数据库迁移："
+                    }
+                  ]
+                },
+                {
+                  "type": "code-block",
+                  "lang": "bash",
+                  "children": [
+                    {
+                      "type": "code-line",
+                      "children": [
+                        {
+                          "text": "python manage.py migrate"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "输出如下图所示："
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "image",
+                      "url": ".tuture/assets/migrate.png",
+                      "children": [
+                        {
+                          "text": ""
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "数据库迁移完成后，我们就可以创建用于登录后台管理的超级用户："
+                    }
+                  ]
+                },
+                {
+                  "type": "code-block",
+                  "lang": "bash",
+                  "children": [
+                    {
+                      "type": "code-line",
+                      "children": [
+                        {
+                          "text": "python manage.py createsuperuser"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "按照提示填写用户名和密码即可。然后访问 "
+                    },
+                    {
+                      "link": true,
+                      "url": "localhost:8000/admin",
+                      "text": "localhost:8000/admin"
+                    },
+                    {
+                      "text": "，进入后台系统的登录页面："
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "image",
+                      "url": ".tuture/assets/admin-login.png",
+                      "children": [
+                        {
+                          "text": ""
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "填入刚才设置的用户名和密码，进入后台管理页面："
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "image",
+                      "url": ".tuture/assets/admin-1.png",
+                      "children": [
+                        {
+                          "text": ""
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "咦，我们刚才创建的 news 应用还有 Post 模型去哪了？"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "file",
+          "file": "news/admin.py",
+          "display": true,
+          "id": "OwiuiGHqWS",
+          "children": [
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "heading-three",
+                  "children": [
+                    {
+                      "text": "配置后台管理接口"
+                    }
+                  ],
+                  "id": "MozAsSOLmz"
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "那是因为我们没有实现 news 应用的后台管理接口。在 news/admin.py 中填入代码如下："
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "diff-block",
+              "file": "news/admin.py",
+              "commit": "f32f810",
+              "hiddenLines": [],
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "再次进入后台管理系统，可以看到我们的 news 应用和 Post 模型了："
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "image",
+                      "url": ".tuture/assets/admin-2.png",
+                      "children": [
+                        {
+                          "text": ""
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "点击 Posts 一栏的 +Add 按钮，开始添加新闻（内容随意）："
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "image",
+                      "url": ".tuture/assets/admin-3.png",
+                      "children": [
+                        {
+                          "text": ""
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "大概添加个两三条新闻就差不多啦。你也可以进一步探索后台管理系统，包括修改新闻、添加用户等等，都可以。"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "file",
+          "file": "news/views.py",
+          "display": true,
+          "id": "_3tcbYSd9a",
+          "children": [
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "heading-three",
+                  "children": [
+                    {
+                      "text": "在视图中添加数据查询"
+                    }
+                  ],
+                  "id": "yfrablyJ-b"
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "最后，我们在视图中加入从数据库中查询的代码："
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "diff-block",
+              "file": "news/views.py",
+              "commit": "f32f810",
+              "hiddenLines": [],
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "file",
+          "file": "news/migrations/0001_initial.py",
+          "display": false,
+          "id": "Y3RetWs-lI",
+          "children": [
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "diff-block",
+              "file": "news/migrations/0001_initial.py",
+              "commit": "f32f810",
+              "hiddenLines": [],
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "explain",
+              "fixed": true,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "explain",
+          "fixed": true,
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "访问网站首页，可以看到刚才在后台管理系统添加的新闻了："
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "image",
+                  "url": ".tuture/assets/with-model.png",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "大功告成！在这篇教程中，我们完成了一个新闻发布网站，并且可以从后台管理系统中添加新闻，最终展示到我们的网站首页上。"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "希望这篇教程能够让你对 Django 最重要的一些概念和操作有了基本的了解。Django 还有很多很多的高级玩法，例如数据模型中的高级查询、字段索引、更换数据库等等，模板中的继承机制、内部标签等等，还有视图中如何处理各类请求（POST、PUT等），我们会在后续更多教程中逐一为大家讲解，不见不散！"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

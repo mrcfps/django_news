@@ -1,0 +1,66 @@
+[
+  {
+    "localPath": ".tuture/assets/django-logo.jpg",
+    "hostingUri": "https://imgkr.cn-bj.ufileos.com/58ee2649-d529-416c-8064-1bbc5b7c3e54.jpg"
+  },
+  {
+    "localPath": ".tuture/assets/welcome.png",
+    "hostingUri": "https://imgkr.cn-bj.ufileos.com/707599c7-93a0-402a-90f9-b6a41dd175c6.png"
+  },
+  {
+    "localPath": ".tuture/assets/django-apps.png",
+    "hostingUri": "https://imgkr.cn-bj.ufileos.com/af3839da-51c4-403d-bd31-af84114691de.png"
+  },
+  {
+    "localPath": ".tuture/assets/image.png",
+    "hostingUri": "https://imgkr.cn-bj.ufileos.com/f8987e69-d777-49ad-bea7-a4c6ff1fdf3d.png"
+  },
+  {
+    "localPath": ".tuture/assets/router.png",
+    "hostingUri": "https://imgkr.cn-bj.ufileos.com/556bbd5d-2108-494a-a0df-c73355e19365.png"
+  },
+  {
+    "localPath": ".tuture/assets/image-5d7b188345eefd43.png",
+    "hostingUri": "https://imgkr.cn-bj.ufileos.com/9bb3997c-a14c-4f88-ae2d-b70e473ae54e.png"
+  },
+  {
+    "localPath": ".tuture/assets/image-94b9c2ed867bdc16.png",
+    "hostingUri": "https://imgkr.cn-bj.ufileos.com/1897cd42-6a7b-4425-b9c1-4f40f30b7c09.png"
+  },
+  {
+    "localPath": ".tuture/assets/migrate.png",
+    "hostingUri": "https://imgkr.cn-bj.ufileos.com/b5278ced-4e65-4b95-8fda-02cc421d3f60.png"
+  },
+  {
+    "localPath": ".tuture/assets/admin-login.png",
+    "hostingUri": "https://imgkr.cn-bj.ufileos.com/584d8f69-9eba-40e2-bb8c-c3da0b1577e6.png"
+  },
+  {
+    "localPath": ".tuture/assets/admin-1.png",
+    "hostingUri": "https://imgkr.cn-bj.ufileos.com/d07ea8cf-65da-4c65-b27f-91d3a020fb3b.png"
+  },
+  {
+    "localPath": ".tuture/assets/admin-2.png",
+    "hostingUri": "https://imgkr.cn-bj.ufileos.com/064381fe-f4ef-4105-84e2-c1c6ab0583e1.png"
+  },
+  {
+    "localPath": ".tuture/assets/admin-3.png",
+    "hostingUri": "https://imgkr.cn-bj.ufileos.com/14602310-7e21-46ed-8095-79ed4ac7b015.png"
+  },
+  {
+    "localPath": ".tuture/assets/with-model.png",
+    "hostingUri": "https://imgkr.cn-bj.ufileos.com/494039d2-0812-4e0f-9c09-9630df010a37.png"
+  },
+  {
+    "localPath": ".tuture/assets/migration-flow.png",
+    "hostingUri": "https://imgkr.cn-bj.ufileos.com/bdfdd5e1-f8ef-49c5-bc30-71a167978836.png"
+  },
+  {
+    "localPath": ".tuture/assets/cover.png",
+    "hostingUri": "https://imgkr.cn-bj.ufileos.com/6f389abc-631d-4559-8043-32b892a8899b.png"
+  },
+  {
+    "localPath": ".tuture/assets/cover.png",
+    "hostingUri": "https://imgkr.cn-bj.ufileos.com/35427caf-4001-42dc-a57c-952c6220c181.png"
+  }
+]
