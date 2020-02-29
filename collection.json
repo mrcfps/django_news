@@ -4,14 +4,9 @@
   "id": "55d393c",
   "cover": ".tuture/assets/cover.png",
   "created": "2019-11-19T11:56:12.807Z",
-  "topics": [
-    "Django"
-  ],
-  "categories": [
-    "后端",
-    "Python",
-    "入门"
-  ],
+  "github": "https://github.com/mRcfps/django_news",
+  "topics": ["Django"],
+  "categories": ["后端", "Python", "入门"],
   "articles": [
     {
       "name": "一杯茶的时间，上手 Django 框架开发",
@@ -19,14 +14,8 @@
       "id": "55d393c",
       "cover": ".tuture/assets/cover.png",
       "created": "2019-11-19T11:56:12.807Z",
-      "topics": [
-        "Django"
-      ],
-      "categories": [
-        "后端",
-        "Python",
-        "入门"
-      ]
+      "topics": ["Django"],
+      "categories": ["后端", "Python", "入门"]
     }
   ],
   "steps": [
